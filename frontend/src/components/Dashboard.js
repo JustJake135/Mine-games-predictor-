@@ -113,7 +113,7 @@ const Dashboard = () => {
         </div>
         <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
           <h3 className="text-gray-400 text-sm font-medium mb-2">Win Rate</h3>
-          <p className="text-2xl font-bold text-green-400">{(stats.winRate * 100).toFixed(1)}%</p>
+          <p className="text-2xl font-bold text-green-400">{stats.winRate ? (stats.winRate * 100).toFixed(1) : '0'}%</p>
         </div>
         <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
           <h3 className="text-gray-400 text-sm font-medium mb-2">Avg Multiplier</h3>
