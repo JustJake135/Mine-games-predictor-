@@ -123,11 +123,14 @@ backend:
     file: "monte_carlo_engine.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "Built comprehensive simulation engine with up to 100k iterations, risk-reward analysis, bankroll management, and batch analysis capabilities"
+      - working: true
+        agent: "testing"
+        comment: "Tested Monte Carlo simulation endpoints with 1000 iterations. Both /simulation/monte-carlo and /simulation/risk-analysis/{mine_count} endpoints are working correctly. The engine properly calculates optimal cash-out points, success rates, and risk metrics."
 
   - task: "Provably Fair Verification System"
     implemented: true
