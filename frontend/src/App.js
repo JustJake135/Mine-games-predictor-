@@ -9,6 +9,7 @@ import MinesGame from './components/MinesGame';
 import AnalysisDashboard from './components/AnalysisDashboard';
 import MonteCarloSimulator from './components/MonteCarloSimulator';
 import ProvablyFairVerifier from './components/ProvablyFairVerifier';
+import AdvancedAnalytics from './components/AdvancedAnalytics';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
