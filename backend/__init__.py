@@ -1,0 +1,1 @@
+# Backend package for Advanced Mines Predictor
