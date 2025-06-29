@@ -117,7 +117,7 @@ const Dashboard = () => {
         </div>
         <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
           <h3 className="text-gray-400 text-sm font-medium mb-2">Avg Multiplier</h3>
-          <p className="text-2xl font-bold text-yellow-400">{stats.averageMultiplier.toFixed(2)}x</p>
+          <p className="text-2xl font-bold text-yellow-400">{stats.averageMultiplier ? stats.averageMultiplier.toFixed(2) : '0.00'}x</p>
         </div>
         <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
           <h3 className="text-gray-400 text-sm font-medium mb-2">Net Profit</h3>
