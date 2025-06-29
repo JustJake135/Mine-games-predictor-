@@ -9,10 +9,10 @@ from typing import List, Optional, Dict, Any
 import asyncio
 
 # Import our custom modules
-from .models import *
-from .probability_engine import MinesProbabilityEngine
-from .monte_carlo_engine import MonteCarloSimulationEngine
-from .provably_fair import ProvablyFairSystem
+from models import *
+from probability_engine import MinesProbabilityEngine
+from monte_carlo_engine import MonteCarloSimulationEngine
+from provably_fair import ProvablyFairSystem
 
 # Load environment variables
 ROOT_DIR = Path(__file__).parent
