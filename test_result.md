@@ -138,11 +138,14 @@ backend:
     file: "provably_fair.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "Implemented HMAC-SHA256 cryptographic verification system with Fisher-Yates shuffle and complete fairness validation"
+      - working: true
+        agent: "testing"
+        comment: "Tested provably fair endpoints. Both /provably-fair/generate-seeds and /provably-fair/verify endpoints are working correctly. The system properly generates cryptographic seeds and verifies game results using HMAC-SHA256."
 
   - task: "Database Models and Data Structures"
     implemented: true
