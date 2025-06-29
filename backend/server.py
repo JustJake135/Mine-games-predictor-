@@ -378,7 +378,7 @@ async def health_check():
     """Detailed health check"""
     try:
         # Test database connection
-        await db.admin.command('ismaster')
+        await client.admin.command('ismaster')
         db_status = "healthy"
     except Exception as e:
         db_status = f"error: {str(e)}"
