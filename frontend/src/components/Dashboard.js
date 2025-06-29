@@ -109,7 +109,7 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
         <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
           <h3 className="text-gray-400 text-sm font-medium mb-2">Total Games</h3>
-          <p className="text-2xl font-bold text-white">{stats.totalGames.toLocaleString()}</p>
+          <p className="text-2xl font-bold text-white">{stats.totalGames ? stats.totalGames.toLocaleString() : '0'}</p>
         </div>
         <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
           <h3 className="text-gray-400 text-sm font-medium mb-2">Win Rate</h3>
