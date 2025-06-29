@@ -1,38 +1,387 @@
+/* Professional Mines Predictor Styling */
 .App {
-    text-align: center;
-}
-
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+  text-align: center;
 }
 
 .App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+  background-color: #1f2937;
+  padding: 6rem 2rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
 }
 
 .App-link {
-    color: #61dafb;
+  color: #f59e0b;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.App-link:hover {
+  color: #fbbf24;
+  transform: scale(1.05);
+}
+
+.App-link img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+  transition: all 0.3s ease;
+}
+
+.App-link img:hover {
+  box-shadow: 0 15px 35px rgba(245, 158, 11, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Gaming Grid Animations */
+.mine-grid {
+  perspective: 1000px;
+}
+
+.mine-tile {
+  transform-style: preserve-3d;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mine-tile:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.mine-tile.revealed {
+  animation: flipReveal 0.6s ease-out;
+}
+
+@keyframes flipReveal {
+  0% {
+    transform: rotateY(0deg) scale(1);
+  }
+  50% {
+    transform: rotateY(90deg) scale(1.1);
+  }
+  100% {
+    transform: rotateY(0deg) scale(1);
+  }
+}
+
+.mine-tile.mine-hit {
+  animation: explode 0.8s ease-out;
+}
+
+@keyframes explode {
+  0% {
+    transform: scale(1);
+    background-color: #ef4444;
+  }
+  50% {
+    transform: scale(1.3);
+    background-color: #dc2626;
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.8);
+  }
+  100% {
+    transform: scale(1);
+    background-color: #ef4444;
+  }
+}
+
+.mine-tile.safe-reveal {
+  animation: safeGlow 0.6s ease-out;
+}
+
+@keyframes safeGlow {
+  0% {
+    transform: scale(1);
+    background-color: #10b981;
+  }
+  50% {
+    transform: scale(1.1);
+    background-color: #059669;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    background-color: #10b981;
+  }
+}
+
+/* Probability Meter */
+.probability-meter {
+  background: linear-gradient(90deg, #ef4444 0%, #f59e0b 50%, #10b981 100%);
+  height: 8px;
+  border-radius: 9999px;
+  position: relative;
+  overflow: hidden;
+}
+
+.probability-indicator {
+  position: absolute;
+  top: -2px;
+  width: 4px;
+  height: 12px;
+  background: white;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: left 0.3s ease;
+}
+
+/* Multiplier Display */
+.multiplier-display {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 900;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Card Hover Effects */
+.feature-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(55, 65, 81, 0.5);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: #f59e0b;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(245, 158, 11, 0.2);
+}
+
+/* Button Animations */
+.btn-primary {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.btn-primary:hover:before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(245, 158, 11, 0.4);
+}
+
+/* Loading Animations */
+.loading-dots {
+  display: inline-block;
+}
+
+.loading-dots::after {
+  content: '';
+  animation: dots 1.5s infinite;
+}
+
+@keyframes dots {
+  0%, 20% {
+    content: '';
+  }
+  40% {
+    content: '.';
+  }
+  60% {
+    content: '..';
+  }
+  80%, 100% {
+    content: '...';
+  }
+}
+
+/* Stats Counter Animation */
+.stat-counter {
+  transition: all 0.5s ease;
+}
+
+.stat-counter.updated {
+  animation: countUp 0.8s ease-out;
+}
+
+@keyframes countUp {
+  0% {
+    transform: scale(1.2);
+    color: #f59e0b;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Risk Level Indicators */
+.risk-low {
+  color: #10b981;
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+.risk-medium {
+  color: #f59e0b;
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+}
+
+.risk-high {
+  color: #ef4444;
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+  animation: danger-pulse 2s infinite;
+}
+
+@keyframes danger-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Table Enhancements */
+.data-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.data-table th,
+.data-table td {
+  transition: background-color 0.2s ease;
+}
+
+.data-table tbody tr:hover {
+  background-color: rgba(55, 65, 81, 0.5);
+  transform: scale(1.01);
+}
+
+/* Progress Bars */
+.progress-bar {
+  background: linear-gradient(90deg, #374151, #4b5563);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+  border-radius: 9999px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Notification Styles */
+.notification {
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+  .App-header {
+    padding: 3rem 1rem;
+  }
+  
+  .mine-tile {
+    font-size: 1.2rem;
+  }
+  
+  .feature-card:hover {
+    transform: none;
+  }
+}
+
+/* Dark Theme Enhancements */
+:root {
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --bg-tertiary: #374151;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --accent-primary: #f59e0b;
+  --accent-secondary: #fbbf24;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* Selection Styling */
+::selection {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+}
+
+/* Focus Styles */
+.focus\:ring-yellow-500:focus {
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
 }
