@@ -1,7 +1,7 @@
 import math
 import random
 from typing import List, Tuple, Dict
-from models import GameSession, ProbabilityAnalysis, StrategyRecommendation
+from .models import GameSession, ProbabilityAnalysis, StrategyRecommendation
 
 class MinesProbabilityEngine:
     """Advanced probability calculation engine for Mines game analysis"""
