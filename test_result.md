@@ -237,15 +237,18 @@ frontend:
 
   - task: "Provably Fair Verifier Component"
     implemented: true
-    working: true
+    working: false
     file: "ProvablyFairVerifier.js"
-    stuck_count: 0
+    stuck_count: 1
     priority: "medium"
     needs_retesting: true
     status_history:
       - working: true
         agent: "main"
         comment: "Implemented cryptographic verification interface with seed generation, validation, and visual mine display"
+      - working: false
+        agent: "testing"
+        comment: "Tested the Provably Fair Verifier component. Seed generation works correctly, but verification functionality fails with an Axios error. The verification form is displayed correctly, but submitting the form does not display verification results. This needs to be fixed."
 
   - task: "Professional UI Styling and CSS"
     implemented: true
