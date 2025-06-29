@@ -31,6 +31,9 @@ db = client[os.environ['DB_NAME']]
 prob_engine = MinesProbabilityEngine()
 monte_carlo_engine = MonteCarloSimulationEngine()
 provably_fair_system = ProvablyFairSystem()
+behavior_analytics = UserBehaviorAnalytics()
+anomaly_detector = AnomalyDetector()
+ensemble_system = EnsemblePredictionSystem(prob_engine, monte_carlo_engine, behavior_analytics)
 
 # Create the main app
 app = FastAPI(
