@@ -226,11 +226,14 @@ frontend:
     file: "MonteCarloSimulator.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "Built simulation interface with configurable parameters, batch analysis, and detailed results visualization"
+      - working: true
+        agent: "testing"
+        comment: "Tested the Monte Carlo Simulator interface. The simulation parameters (mine count, iterations, bet amount) can be configured correctly. Running simulations works properly and displays results with optimal cash-out points, success rates, and expected profits. The batch analysis functionality also works as expected."
 
   - task: "Provably Fair Verifier Component"
     implemented: true
