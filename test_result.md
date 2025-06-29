@@ -211,11 +211,14 @@ frontend:
     file: "AnalysisDashboard.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "Created comprehensive statistical analysis with risk-reward tables, optimal strategies, and volatility visualization"
+      - working: true
+        agent: "testing"
+        comment: "Tested the Analysis Dashboard component. The mine count selector works correctly, and the risk-reward analysis table displays properly. The optimal strategy section and risk metrics are displayed correctly. The dashboard provides comprehensive statistical analysis as expected."
 
   - task: "Monte Carlo Simulator Interface"
     implemented: true
