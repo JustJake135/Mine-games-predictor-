@@ -2,8 +2,8 @@ import random
 import statistics
 import math
 from typing import List, Dict, Tuple
-from .models import MonteCarloResult, MonteCarloRequest
-from .probability_engine import MinesProbabilityEngine
+from models import MonteCarloResult, MonteCarloRequest
+from probability_engine import MinesProbabilityEngine
 
 class MonteCarloSimulationEngine:
     """Advanced Monte Carlo simulation engine for Mines game strategy optimization"""
