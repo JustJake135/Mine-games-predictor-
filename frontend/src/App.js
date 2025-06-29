@@ -88,6 +88,7 @@ function App() {
               <Route path="/analysis" element={<AnalysisDashboard />} />
               <Route path="/simulator" element={<MonteCarloSimulator />} />
               <Route path="/verifier" element={<ProvablyFairVerifier />} />
+              <Route path="/advanced" element={<AdvancedAnalytics />} />
             </Routes>
           </main>
           
