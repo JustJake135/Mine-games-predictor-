@@ -2,7 +2,7 @@ import hashlib
 import hmac
 import secrets
 import json
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 from models import ProvablyFairVerification
 
 class ProvablyFairSystem:
