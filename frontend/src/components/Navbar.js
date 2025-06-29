@@ -11,6 +11,7 @@ const Navbar = () => {
     { name: 'Analysis', href: '/analysis', icon: '📊' },
     { name: 'Simulator', href: '/simulator', icon: '🔬' },
     { name: 'Verifier', href: '/verifier', icon: '✅' },
+    { name: 'AI Analytics', href: '/advanced', icon: '🤖' },
   ];
 
   return (
