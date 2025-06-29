@@ -122,7 +122,7 @@ const Dashboard = () => {
         <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
           <h3 className="text-gray-400 text-sm font-medium mb-2">Net Profit</h3>
           <p className={`text-2xl font-bold ${stats.netProfit >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-            {stats.netProfit >= 0 ? '+' : ''}{stats.netProfit.toFixed(2)}
+            {stats.netProfit !== undefined ? (stats.netProfit >= 0 ? '+' : '') + stats.netProfit.toFixed(2) : '0.00'}
           </p>
         </div>
       </div>
