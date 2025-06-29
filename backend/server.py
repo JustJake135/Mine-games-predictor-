@@ -16,6 +16,7 @@ from models import *
 from probability_engine import MinesProbabilityEngine
 from monte_carlo_engine import MonteCarloSimulationEngine
 from provably_fair import ProvablyFairSystem
+from advanced_analytics import UserBehaviorAnalytics, EnsemblePredictionSystem, AnomalyDetector
 
 # Load environment variables
 ROOT_DIR = Path(__file__).parent
