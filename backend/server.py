@@ -370,6 +370,126 @@ async def get_optimal_stopping_points():
         logger.error(f"Error calculating optimal points: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to calculate optimal points")
 
+# === ADVANCED ANALYTICS ENDPOINTS ===
+
+@api_router.get("/analytics/user-behavior/{user_id}")
+async def get_user_behavior_analysis(user_id: str):
+    """Get comprehensive user behavior analysis"""
+    try:
+        # Get user's game history
+        user_games = await db.game_sessions.find({"user_id": user_id}).to_list(100)
+        game_sessions = [GameSession(**game) for game in user_games]
+        
+        # Analyze behavior
+        behavior_analysis = behavior_analytics.analyze_user_behavior(game_sessions)
+        
+        return behavior_analysis
+        
+    except Exception as e:
+        logger.error(f"Error analyzing user behavior: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to analyze user behavior")
+
+@api_router.get("/analytics/ensemble-prediction/{game_id}")
+async def get_ensemble_prediction(game_id: str, user_id: Optional[str] = None):
+    """Get ensemble prediction combining multiple analysis methods"""
+    try:
+        # Get current game session
+        game_doc = await db.game_sessions.find_one({"id": game_id})
+        if not game_doc:
+            raise HTTPException(status_code=404, detail="Game session not found")
+        
+        game_session = GameSession(**game_doc)
+        
+        # Get user history if user_id provided
+        user_history = []
+        if user_id:
+            user_games = await db.game_sessions.find({"user_id": user_id}).to_list(50)
+            user_history = [GameSession(**game) for game in user_games]
+        
+        # Get ensemble prediction
+        ensemble_result = ensemble_system.get_ensemble_prediction(game_session, user_history)
+        
+        return ensemble_result
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error generating ensemble prediction: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to generate ensemble prediction")
+
+@api_router.get("/analytics/anomaly-detection/{game_id}")
+async def detect_game_anomalies(game_id: str, user_id: Optional[str] = None):
+    """Detect anomalies in current game session"""
+    try:
+        # Get current game session
+        game_doc = await db.game_sessions.find_one({"id": game_id})
+        if not game_doc:
+            raise HTTPException(status_code=404, detail="Game session not found")
+        
+        game_session = GameSession(**game_doc)
+        
+        # Get user history if available
+        user_history = []
+        if user_id:
+            user_games = await db.game_sessions.find({"user_id": user_id}).to_list(50)
+            user_history = [GameSession(**game) for game in user_games]
+        
+        # Detect anomalies
+        anomaly_result = anomaly_detector.detect_anomalies(game_session, user_history)
+        
+        return anomaly_result
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error detecting anomalies: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to detect anomalies")
+
+@api_router.post("/analytics/personalized-recommendation")
+async def get_personalized_recommendation(request: Dict[str, Any]):
+    """Get personalized game recommendations based on user profile"""
+    try:
+        user_id = request.get('user_id')
+        current_game_state = request.get('game_state', {})
+        
+        if not user_id:
+            raise HTTPException(status_code=400, detail="User ID required")
+        
+        # Get user history
+        user_games = await db.game_sessions.find({"user_id": user_id}).to_list(100)
+        game_sessions = [GameSession(**game) for game in user_games]
+        
+        # Analyze user behavior
+        behavior_analysis = behavior_analytics.analyze_user_behavior(game_sessions)
+        
+        # Generate personalized recommendations
+        recommendations = behavior_analysis['personalized_recommendations']
+        
+        # Add contextual adjustments based on current game state
+        if current_game_state:
+            risk_tolerance = behavior_analysis['behavioral_features']['risk_tolerance']
+            
+            # Adjust recommendations based on current context
+            if current_game_state.get('recent_losses', 0) > 3:
+                recommendations['recommended_mine_count'] = max(1, recommendations['recommended_mine_count'] - 1)
+                recommendations['recommended_bet_size'] *= 0.8
+            
+            if current_game_state.get('winning_streak', 0) > 5:
+                recommendations['confidence_boost'] = 0.1
+        
+        return {
+            'personalized_recommendations': recommendations,
+            'risk_profile': behavior_analysis['risk_profile'],
+            'confidence_score': 0.8,
+            'reasoning': f"Based on {len(game_sessions)} games, user shows {behavior_analysis['risk_profile']} risk profile"
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error generating personalized recommendation: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to generate personalized recommendation")
+
 # === LEGACY ENDPOINTS ===
 
 @api_router.get("/")
